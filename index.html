@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 这里替换成你的名字，作为浏览器标签标题 -->
-    <title>Kun QIAN | Personal Homepage</title>
+    <title>Kun Qian | Personal Homepage</title>
     <style>
         /* 全局样式重置 & 基础配置 */
         * {
@@ -13,19 +12,19 @@
             box-sizing: border-box;
         }
 
-        /* 全局配色&字体变量（可一键修改主题） */
+        /* 全局配色&字体变量（学术风低调深蓝主题） */
         :root {
-            --primary-color: #0d3b66; /* 学术主色调-低调深蓝 */
-            --text-primary: #1a1a1a;
-            --text-secondary: #555555;
-            --bg-light: #f8f9fa;
-            --border-color: #e5e7eb;
+            --primary-color: #0f3c70;
+            --text-primary: #121212;
+            --text-secondary: #4a4a4a;
+            --bg-light: #f7f9fc;
+            --border-color: #e2e8f0;
             --hover-color: #1a5fb4;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
+            line-height: 1.65;
             color: var(--text-primary);
             background-color: #ffffff;
             max-width: 1200px;
@@ -33,11 +32,11 @@
             padding: 0 20px;
         }
 
-        /* 顶部导航栏样式 */
+        /* 顶部导航栏 */
         header {
-            padding: 20px 0;
+            padding: 22px 0;
             border-bottom: 1px solid var(--border-color);
-            margin-bottom: 40px;
+            margin-bottom: 45px;
             position: sticky;
             top: 0;
             background-color: rgba(255,255,255,0.95);
@@ -47,7 +46,7 @@
 
         nav {
             display: flex;
-            gap: 30px;
+            gap: 28px;
             flex-wrap: wrap;
             justify-content: flex-start;
         }
@@ -67,7 +66,7 @@
         .container {
             display: grid;
             grid-template-columns: 300px 1fr;
-            gap: 50px;
+            gap: 55px;
             margin-bottom: 60px;
         }
 
@@ -81,7 +80,7 @@
         .avatar {
             width: 100%;
             border-radius: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             object-fit: cover;
         }
 
@@ -101,10 +100,10 @@
         .affiliation {
             font-size: 16px;
             color: var(--text-secondary);
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
-        /* 社交&学术链接 */
+        /* 联系&学术链接 */
         .contact-links {
             display: flex;
             flex-direction: column;
@@ -143,6 +142,7 @@
             list-style: none;
             color: var(--text-secondary);
             font-size: 15px;
+            line-height: 1.8;
         }
 
         /* 主内容区通用样式 */
@@ -186,10 +186,17 @@
             margin: 4px 0;
         }
 
+        .course-list {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
         /* 论文列表样式 */
         .publication-item {
             margin-bottom: 28px;
-            padding: 16px;
+            padding: 18px;
             background-color: var(--bg-light);
             border-radius: 8px;
         }
@@ -219,24 +226,70 @@
             line-height: 1.5;
         }
 
-        /* 新闻动态样式（可选） */
-        .news-item {
-            margin-bottom: 16px;
-            padding-left: 20px;
-            position: relative;
+        /* 科研/竞赛经历样式 */
+        .experience-item {
+            margin-bottom: 28px;
         }
 
-        .news-item::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .news-date {
+        .experience-item h3 {
+            font-size: 18px;
             font-weight: 600;
-            color: var(--primary-color);
+        }
+
+        .experience-item .period {
+            font-size: 15px;
+            color: var(--text-secondary);
+            float: right;
+        }
+
+        .experience-item .project-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: 4px 0 10px 0;
+        }
+
+        .experience-item ul {
+            padding-left: 22px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        /* 奖项列表样式 */
+        .awards-list {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .awards-list li {
+            margin-bottom: 12px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* 技能模块样式 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .skill-category h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .skill-category ul {
+            list-style: none;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
         }
 
         /* 页脚样式 */
@@ -263,25 +316,30 @@
                 gap: 15px;
             }
 
-            .education-item .period {
+            .education-item .period,
+            .experience-item .period,
+            .awards-list li span {
                 float: none;
                 display: block;
+                width: 100%;
             }
         }
     </style>
-    <!-- 图标库：用于链接前的小图标，无需本地下载 -->
+    <!-- 图标库：无需本地下载，直接使用 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- 顶部导航栏：可根据你的需求增删选项 -->
+    <!-- 顶部导航栏：和模块一一对应 -->
     <header>
         <nav>
             <a href="#about" class="active">About</a>
-            <a href="#news">News</a>
             <a href="#education">Education</a>
             <a href="#publications">Publications</a>
+            <a href="#research">Research</a>
+            <a href="#competitions">Competitions</a>
             <a href="#awards">Awards</a>
-            <a href="cv.pdf" target="_blank">CV</a>
+            <a href="#skills">Skills</a>
+            <a href="CV_Kun Qian.pdf" target="_blank">CV</a>
         </nav>
     </header>
 
@@ -289,112 +347,169 @@
     <div class="container">
         <!-- 左侧侧边栏：个人信息卡片 -->
         <aside class="sidebar">
-            <!-- 头像：替换成你自己的图片链接/本地文件名 -->
-            <img src="avatar.jpg" alt="Your Name" class="avatar">
+            <!-- 头像：替换成你自己的头像图片，命名为avatar.jpg即可 -->
+            <img src="avatar.jpg" alt="Kun Qian" class="avatar">
             
-            <h1 class="name">Your Name</h1>
-            <p class="title">PhD Candidate</p> <!-- 替换成你的头衔：比如Prospective PhD Student -->
-            <p class="affiliation">Your University</p> <!-- 替换成你的学校 -->
+            <h1 class="name">Kun Qian</h1>
+            <p class="title">B.Eng. Candidate in Automation</p>
+            <p class="affiliation">Huazhong University of Science and Technology</p>
 
-            <!-- 联系&学术链接：按需增删，替换成你自己的链接 -->
+            <!-- 联系&学术链接：替换成你自己的真实链接 -->
             <div class="contact-links">
-                <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i> Email</a>
+                <a href="mailto:qiank@hust.edu.cn"><i class="fas fa-envelope"></i> Email</a>
                 <a href="https://github.com/your-github-id" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                 <a href="https://scholar.google.com/citations?user=your-scholar-id" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
                 <a href="https://linkedin.com/in/your-linkedin-id" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="cv.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Download CV</a>
+                <a href="CV_Kun Qian.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Download CV</a>
             </div>
 
-            <!-- 研究兴趣：替换成你的研究方向 -->
+            <!-- 研究兴趣：完全匹配你的研究方向 -->
             <div class="research-interests">
                 <h3>Research Interests</h3>
                 <ul>
                     <li>Distributed Optimization</li>
-                    <li>Machine Learning</li>
+                    <li>Multi-Agent Systems</li>
+                    <li>Resource Allocation</li>
                     <li>Control Theory</li>
-                    <li>Algorithm Design</li>
+                    <li>Pattern Recognition & Machine Learning</li>
                 </ul>
             </div>
         </aside>
 
-        <!-- 右侧主内容区 -->
+        <!-- 右侧主内容区：100%匹配你的CV信息 -->
         <main class="content">
             <!-- About 个人介绍模块 -->
             <section id="about" class="content-section">
                 <h2>About</h2>
                 <p>
-                    I am a prospective PhD student at [Your University/Department], advised by Prof. [Your Advisor's Name].
+                    I am a final-year undergraduate student majoring in Automation at the School of Artificial Intelligence and Automation, Huazhong University of Science and Technology (HUST), with an average grade of 91.32/100 (ranked 5/166, Top 3%).
                 </p>
                 <p>
-                    Prior to this, I will obtain my Bachelor's degree in [Your Major] from [Your Undergraduate University] in [Year].
+                    My research focuses on distributed optimization algorithm design, resource allocation for multi-agent systems, and control theory under imperfect communication networks. I have 2 peer-reviewed conference papers accepted by EI-indexed conferences (CCC 2025, IFAC World Congress 2026).
                 </p>
                 <p>
-                    My current research focuses on [your core research direction], with particular interest in [your specific research topics]. My goal is to [your research vision, optional].
+                    I have received the National Scholarship (Top 2%), National First Prize in the National Intelligent Car Competition, and multiple academic honors. I am currently preparing for my PhD studies in the field of control science and engineering.
                 </p>
-            </section>
-
-            <!-- News 动态模块（可选，不需要可直接删除） -->
-            <section id="news" class="content-section">
-                <h2>News</h2>
-                <div class="news-item">
-                    <span class="news-date">2026.09</span>: I will start my PhD journey at [Your University]!
-                </div>
-                <div class="news-item">
-                    <span class="news-date">2026.06</span>: I will graduate from [Your Undergraduate University] with a Bachelor's degree.
-                </div>
-                <div class="news-item">
-                    <span class="news-date">2025.XX</span>: [Your other news, e.g. paper accepted, award received]
-                </div>
             </section>
 
             <!-- Education 教育经历模块 -->
             <section id="education" class="content-section">
                 <h2>Education</h2>
                 <div class="education-item">
-                    <h3>[Your PhD University]<span class="period">2026.09 - 2030.06 (Expected)</span></h3>
-                    <p class="degree">PhD in [Your Major], Department of [Your Department]</p>
-                    <p class="degree">Advisor: Prof. [Your Advisor's Name]</p>
-                </div>
-                <div class="education-item">
-                    <h3>[Your Undergraduate University]<span class="period">2022.09 - 2026.06</span></h3>
-                    <p class="degree">B.Eng. in [Your Major]</p>
-                    <p class="degree">GPA: X.X/4.0 | Rank: X/X (optional)</p>
+                    <h3>Huazhong University of Science and Technology<span class="period">09.2022 - Present</span></h3>
+                    <p class="degree">B.Eng. in Automation, School of Artificial Intelligence and Automation</p>
+                    <p class="degree">Wuhan, China</p>
+                    <p class="degree">Average Grade: 91.32/100 | Rank: 5/166 (Top 3%)</p>
+                    <p class="course-list">
+                        <strong>Relevant Courses:</strong> Principles of Automatic Control (95), Sensor Technology (93), Digital Circuit and Logic Design (96), Computer Control Technology (90), Pattern Recognition and Machine Learning (95)
+                    </p>
                 </div>
             </section>
 
             <!-- Publications 论文发表模块 -->
             <section id="publications" class="content-section">
                 <h2>Publications</h2>
-                <!-- 论文1 -->
+                <!-- 第一篇论文（一作） -->
                 <div class="publication-item">
-                    <h3>Paper Title 1</h3>
-                    <p class="authors"><strong>Your Name</strong>, Co-author 1, Co-author 2, Advisor Name*</p>
-                    <p class="venue">IEEE Transactions on XXX, 2026 (Under Review)</p>
-                    <p class="abstract">
-                        Brief introduction of your paper: what problem you solved, what method you proposed, what's the key contribution.
-                    </p>
+                    <h3>Quantized Distributed Dual Algorithm for Resource Allocation with Gradient Tracking over Unbalanced Networks</h3>
+                    <p class="authors"><strong>K. Qian</strong>, Y.-L. Li, X.-K. Liu</p>
+                    <p class="venue">Chinese Control Conference (CCC), 2025. (Accepted | EI Compendex)</p>
                 </div>
-                <!-- 论文2 -->
+                <!-- 第二篇论文（二作） -->
                 <div class="publication-item">
-                    <h3>Paper Title 2</h3>
-                    <p class="authors">Co-author 1, <strong>Your Name</strong>, Co-author 2</p>
-                    <p class="venue">arXiv preprint arXiv:XXXX.XXXXX, 2025</p>
-                    <p class="abstract">
-                        Brief introduction of your preprint paper.
-                    </p>
+                    <h3>Communication-Efficient Distributed Resource Allocation via Implicit Dual Gradient Tracking</h3>
+                    <p class="authors">Y.-L. Li, <strong>K. Qian</strong>, X.-K. Liu, Y.-W. Wang, P. Siano</p>
+                    <p class="venue">IFAC World Congress, 2026. (Accepted | EI Compendex)</p>
                 </div>
             </section>
 
-            <!-- Awards 获奖模块（可选） -->
+            <!-- Research Experience 科研经历模块 -->
+            <section id="research" class="content-section">
+                <h2>Research Experience</h2>
+                <!-- 国创项目 -->
+                <div class="experience-item">
+                    <h3>National College Student Innovation Training Program<span class="period">01.2024 - 04.2025</span></h3>
+                    <p class="project-title">Lightweight Design and Implementation of Elastic Distributed Optimization Algorithms</p>
+                    <ul>
+                        <li>Designed a fully distributed multi-agent physical platform based on Raspberry Pi 4B to verify real-time optimization algorithm, supporting 3+ agents with synchronous communication for real-time distributed optimization tasks.</li>
+                        <li>Built a distributed algorithm simulation platform, incorporating modules like network topology, algorithm and quantizer, supporting convenient comparison of algorithms under different experimental scenarios.</li>
+                        <li>Proposed a quantized dual gradient tracking method to address limited bandwidth and unbalanced communication topologies, achieving linear convergence with an accuracy of 10<sup>-10</sup> even at a quantization level of 3.</li>
+                        <li>Resulted in a first-author paper accepted by CCC 2025.</li>
+                    </ul>
+                </div>
+                <!-- 分布式优化研究项目 -->
+                <div class="experience-item">
+                    <h3>Research on Distributed Optimization under Imperfect Communication<span class="period">11.2024 - 12.2024</span></h3>
+                    <p class="project-title">Communication-Efficient Distributed Resource Allocation via Implicit Dual Gradient Tracking</p>
+                    <ul>
+                        <li>Conducted comparative experiments of distributed optimization algorithms via MATLAB simulations and Raspberry Pi physical platforms.</li>
+                        <li>Authored the experimental section of the paper, detailing methodology, implementation, and results analysis.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Competitions 竞赛经历模块 -->
+            <section id="competitions" class="content-section">
+                <h2>Competition Experience</h2>
+                <div class="experience-item">
+                    <h3>National Intelligent Car Competition for College Students<span class="period">09.2024 - 12.2024</span></h3>
+                    <p class="project-title">Outdoor Unmanned Vehicle (ROS-based) Group | Team Leader</p>
+                    <ul>
+                        <li>Led a 5-member team to design motion control and path planning algorithms for outdoor unmanned vehicles.</li>
+                        <li>Developed motion control code using PID control in Python.</li>
+                        <li>Proposed a simplified path planning method combining coordinate transformation and PID control, reducing task completion time by around 20 seconds compared to the default ROS global-local planning approach.</li>
+                        <li>Won the First Prize in the National Finals (among 493 teams nationwide).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Awards 获奖模块 -->
             <section id="awards" class="content-section">
                 <h2>Awards & Honors</h2>
-                <div class="education-item">
-                    <h3>National Scholarship<span class="period">2025</span></h3>
-                    <p class="degree">Ministry of Education of China</p>
-                </div>
-                <div class="education-item">
-                    <h3>First-Class Academic Scholarship<span class="period">2024</span></h3>
-                    <p class="degree">Your Undergraduate University</p>
+                <ul class="awards-list">
+                    <li><span>National Scholarship</span><span>2024 (Top 2%)</span></li>
+                    <li><span>Outstanding Undergraduates in Terms of Academic Performance</span><span>2024 (Top 1%)</span></li>
+                    <li><span>National First Prize, National Intelligent Car Competition for College Students</span><span>2024</span></li>
+                    <li><span>Merit Student, Huazhong University of Science and Technology</span><span>2024</span></li>
+                    <li><span>Honorable Mention, Mathematical Contest in Modeling (MCM)</span><span>2023</span></li>
+                    <li><span>First Prize (Provincial Level), National College Mathematics Competition</span><span>2023</span></li>
+                    <li><span>First Prize, School Badminton Skills Competition</span><span>2023</span></li>
+                </ul>
+            </section>
+
+            <!-- Skills 技能模块 -->
+            <section id="skills" class="content-section">
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Language</h3>
+                        <ul>
+                            <li>English (IELTS 6.0)</li>
+                            <li>Chinese (Native)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Programming</h3>
+                        <ul>
+                            <li>Python (ROS, NumPy)</li>
+                            <li>C (STM32)</li>
+                            <li>MATLAB (MCM, Simulink)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools</h3>
+                        <ul>
+                            <li>LaTeX</li>
+                            <li>Keil</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Hardware</h3>
+                        <ul>
+                            <li>Raspberry Pi</li>
+                            <li>STM32 Microcontrollers</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </main>
@@ -402,7 +517,7 @@
 
     <!-- 页脚 -->
     <footer>
-        <p>© 2026 Your Name. All rights reserved.</p>
+        <p>© 2026 Kun Qian. All rights reserved.</p>
         <p style="margin-top: 8px;">Hosted on GitHub Pages</p>
     </footer>
 </body>
