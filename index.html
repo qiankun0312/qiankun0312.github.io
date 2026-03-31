@@ -231,34 +231,26 @@
             }
         }
 
-        /* 分区标题样式（图标不同颜色，字体黑色） */
+        /* 分区标题样式（图标不同颜色，字体黑色，下划线统一黑色） */
         .content-section h2 {
             font-size: 26px;
             margin-bottom: 20px;
             color: #000; /* 字体统一黑色 */
             padding-bottom: 8px;
-            border-bottom: 2px solid;
+            border-bottom: 2px solid #000; /* 下划线统一黑色 */
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        /* 分区标题图标不同颜色，边框对应颜色 */
-        #about h2 { border-color: var(--about-color); }
+        /* 仅保留图标颜色差异化，下划线统一黑色（删除原border-color配置） */
         #about h2 i { color: var(--about-color); }
-        #education h2 { border-color: var(--education-color); }
         #education h2 i { color: var(--education-color); }
-        #news h2 { border-color: var(--news-color); }
         #news h2 i { color: var(--news-color); }
-        #publications h2 { border-color: var(--publications-color); }
         #publications h2 i { color: var(--publications-color); }
-        #research h2 { border-color: var(--research-color); }
         #research h2 i { color: var(--research-color); }
-        #competitions h2 { border-color: var(--competitions-color); }
         #competitions h2 i { color: var(--competitions-color); }
-        #awards h2 { border-color: var(--awards-color); }
         #awards h2 i { color: var(--awards-color); }
-        #skills h2 { border-color: var(--skills-color); }
         #skills h2 i { color: var(--skills-color); }
         
 
@@ -326,7 +318,7 @@
             padding: 10px 14px;
             border-radius: 8px;
             transition: all 0.3s ease;
-            border-left: 3px solid var(--news-color);
+            border-left: 3px solid #000; /* News左侧边框统一黑色 */
         }
 
         /* 移除news列表项的图标 */
@@ -427,7 +419,7 @@
             line-height: 1.65;
         }
 
-        /* 奖项列表样式（移除图标） */
+        /* 奖项列表样式（移除图标，左侧边框统一黑色） */
         .awards-list {
             padding-left: 0;
             list-style: none;
@@ -443,7 +435,7 @@
             padding: 8px 12px;
             border-radius: 6px;
             transition: all 0.2s ease;
-            border-left: 3px solid var(--awards-color);
+            border-left: 3px solid #000; /* Awards左侧边框统一黑色 */
         }
 
         .awards-list li:hover {
