@@ -539,48 +539,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<script>
-// 1. 获取所有导航项和内容区域
-const navLinks = document.querySelectorAll('nav a');
-const sections = document.querySelectorAll('.content-section');
 
-// 2. 点击导航项切换active类 + 平滑滚动
-navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    // 移除所有导航项的active类
-    navLinks.forEach(item => item.classList.remove('active'));
-    // 给当前点击的导航项添加active类
-    link.classList.add('active');
-  });
-});
-
-// 3. 滚动页面时自动匹配对应导航项的active类（可选，提升体验）
-window.addEventListener('scroll', () => {
-  let current = '';
-  // 遍历所有内容区域，判断当前视口在哪个区域
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    // 滚动距离超过区域顶部-100（适配导航栏固定的偏移）
-    if (scrollY >= (sectionTop - 100)) {
-      current = section.getAttribute('id');
-    }
-  });
-
-  // 根据当前区域更新导航项的active类
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    // 匹配导航项的href（#about、#education等）和当前区域id
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
-    // 单独处理CV项（无对应section，点击后保持active）
-    if (link.getAttribute('href') === 'CV_Kun Qian.pdf' && link.classList.contains('active')) {
-      return;
-    }
-  });
-});
-</script>
 
 <body>
     <!-- 顶部导航栏：和模块一一对应 -->
@@ -657,7 +616,7 @@ window.addEventListener('scroll', () => {
                 <h2><i class="fas fa-fire"></i> News</h2>
                 <ul class="news-list">
                     <li>
-                        <span class="news-date">2025.04</span>: New Paper on Traffic Optimization Accepted by ICTETS 2023.
+                        <span class="news-date">2025.04</span>: New Paper on Distributed Optimization Accepted by CCC 2025.
                     </li>
                 </ul>
             </section>
@@ -743,5 +702,48 @@ window.addEventListener('scroll', () => {
         <p>© 2026 Kun Qian. All rights reserved.</p>
         <p style="margin-top: 8px;">Hosted on GitHub Pages</p>
     </footer>
+
+    <script>
+        // 1. 获取所有导航项和内容区域
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('.content-section');
+
+        // 2. 点击导航项切换active类 + 平滑滚动
+        navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // 移除所有导航项的active类
+            navLinks.forEach(item => item.classList.remove('active'));
+            // 给当前点击的导航项添加active类
+            link.classList.add('active');
+        });
+        });
+
+        // 3. 滚动页面时自动匹配对应导航项的active类（可选，提升体验）
+        window.addEventListener('scroll', () => {
+        let current = '';
+        // 遍历所有内容区域，判断当前视口在哪个区域
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            // 滚动距离超过区域顶部-100（适配导航栏固定的偏移）
+            if (scrollY >= (sectionTop - 100)) {
+            current = section.getAttribute('id');
+            }
+        });
+
+        // 根据当前区域更新导航项的active类
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            // 匹配导航项的href（#about、#education等）和当前区域id
+            if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+            }
+            // 单独处理CV项（无对应section，点击后保持active）
+            if (link.getAttribute('href') === 'CV_Kun Qian.pdf' && link.classList.contains('active')) {
+            return;
+            }
+        });
+        });
+    </script>
 </body>
 </html>
