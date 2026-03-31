@@ -12,14 +12,24 @@
             box-sizing: border-box;
         }
 
-        /* 全局配色&字体变量（学术风低调深蓝主题） */
+        /* 扩展全局配色（分区主题色） */
         :root {
             --primary-color: #0f3c70;
+            --about-color: #0f3c70;
+            --education-color: #1e65b3;
+            --publications-color: #2a85c9;
+            --research-color: #3896d0;
+            --competitions-color: #46a7d7;
+            --awards-color: #d4a017;
+            --skills-color: #2e7d32;
+            --news-color: #e53e3e; 
+            
             --text-primary: #121212;
             --text-secondary: #4a4a4a;
             --bg-light: #f7f9fc;
             --border-color: #e2e8f0;
             --hover-color: #1a5fb4;
+            --shadow-color: rgba(0, 0, 0, 0.08);
         }
 
         body {
@@ -30,9 +40,11 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            /* 全局平滑过渡 */
+            scroll-behavior: smooth;
         }
 
-        /* 顶部导航栏 */
+        /* 顶部导航栏（增强动画） */
         header {
             padding: 22px 0;
             border-bottom: 1px solid var(--border-color);
@@ -55,11 +67,30 @@
             text-decoration: none;
             color: var(--text-secondary);
             font-weight: 500;
-            transition: color 0.2s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        /* 导航栏下划线动画 */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
         }
 
         nav a:hover, nav a.active {
             color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
         /* 主体容器：侧边栏+主内容区 */
@@ -70,11 +101,14 @@
             margin-bottom: 60px;
         }
 
-        /* 侧边栏：个人信息卡片 */
+        /* 侧边栏：个人信息卡片（新增悬浮动画） */
         .sidebar {
-            /* position: sticky;
-            top: 100px; */
             height: fit-content;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar:hover {
+            transform: translateY(-5px);
         }
 
         .avatar {
@@ -82,6 +116,14 @@
             border-radius: 12px;
             margin-bottom: 22px;
             object-fit: cover;
+            /* 头像阴影+hover动画 */
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px var(--shadow-color);
         }
 
         .name {
@@ -103,7 +145,7 @@
             margin-bottom: 22px;
         }
 
-        /* 联系&学术链接 */
+        /* 联系&学术链接（增强图标对齐+hover动画） */
         .contact-links {
             display: flex;
             flex-direction: column;
@@ -118,24 +160,37 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            transition: color 0.2s ease;
+            transition: all 0.2s ease;
+            padding: 6px 8px;
+            border-radius: 6px;
         }
 
         .contact-links a:hover {
             color: var(--hover-color);
+            background-color: var(--bg-light);
+            transform: translateX(4px);
         }
 
-        /* 研究兴趣模块 */
+        /* 研究兴趣模块（新增背景动画） */
         .research-interests {
             background-color: var(--bg-light);
             padding: 18px;
             border-radius: 8px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            transition: transform 0.3s ease;
+        }
+
+        .research-interests:hover {
+            transform: translateY(-3px);
         }
 
         .research-interests h3 {
             font-size: 17px;
             margin-bottom: 12px;
             color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .research-interests ul {
@@ -145,18 +200,64 @@
             line-height: 1.8;
         }
 
-        /* 主内容区通用样式 */
-        .content-section {
-            margin-bottom: 50px;
+        .research-interests li {
+            transition: transform 0.2s ease;
+            padding: 2px 0;
         }
 
+        .research-interests li:hover {
+            transform: translateX(6px);
+            color: var(--primary-color);
+        }
+
+        /* 主内容区通用样式（新增淡入动画） */
+        .content-section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* 分区延迟动画，营造逐段加载效果 */
+        #about { animation-delay: 0.1s; }
+        #education { animation-delay: 0.2s; }
+        #news { animation-delay: 0.3s; }
+        #publications { animation-delay: 0.4s; }
+        #research { animation-delay: 0.5s; }
+        #competitions { animation-delay: 0.6s; }
+        #awards { animation-delay: 0.7s; }
+        #skills { animation-delay: 0.8s; }
+        
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 分区标题样式（不同颜色+图标） */
         .content-section h2 {
             font-size: 26px;
             margin-bottom: 20px;
             color: var(--text-primary);
             padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 2px solid;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        /* 分区标题不同颜色 */
+        #about h2 { border-color: var(--about-color); color: var(--about-color); }
+        #education h2 { border-color: var(--education-color); color: var(--education-color); }
+        #news h2 { border-color: var(--news-color); color: var(--news-color); }
+        #publications h2 { border-color: var(--publications-color); color: var(--publications-color); }
+        #research h2 { border-color: var(--research-color); color: var(--research-color); }
+        #competitions h2 { border-color: var(--competitions-color); color: var(--competitions-color); }
+        #awards h2 { border-color: var(--awards-color); color: var(--awards-color); }
+        #skills h2 { border-color: var(--skills-color); color: var(--skills-color); }
+        
 
         .content-section p {
             font-size: 16px;
@@ -164,14 +265,24 @@
             margin-bottom: 16px;
         }
 
-        /* 教育经历样式 */
+        /* 教育经历样式（新增图标+hover） */
         .education-item {
             margin-bottom: 24px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .education-item:hover {
+            background-color: var(--bg-light);
         }
 
         .education-item h3 {
             font-size: 18px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .education-item .period {
@@ -184,6 +295,7 @@
             font-size: 16px;
             color: var(--text-secondary);
             margin: 4px 0;
+            padding-left: 24px;
         }
 
         .course-list {
@@ -191,14 +303,68 @@
             color: var(--text-secondary);
             margin-top: 8px;
             line-height: 1.6;
+            padding-left: 24px;
         }
 
-        /* 论文列表样式 */
+        
+
+        .news-list {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .news-list li {
+            margin-bottom: 16px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 3px solid var(--news-color);
+        }
+
+        /* 火焰图标样式（匹配参考图） */
+        .news-list li::before {
+            content: '\f46a'; /* 火焰图标 */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--news-color);
+            font-size: 18px;
+            margin-top: 2px;
+            flex-shrink: 0; /* 图标不压缩 */
+        }
+
+        .news-list li:hover {
+            background-color: var(--bg-light);
+            transform: translateX(6px);
+            box-shadow: 0 2px 8px var(--shadow-color);
+        }
+
+        /* 日期样式（加粗突出） */
+        .news-date {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-right: 8px;
+        }
+
+        /* 论文列表样式（增强hover动画） */
         .publication-item {
             margin-bottom: 28px;
             padding: 18px;
             background-color: var(--bg-light);
             border-radius: 8px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--publications-color);
+        }
+
+        .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px var(--shadow-color);
+            border-left-width: 6px;
         }
 
         .publication-item h3 {
@@ -226,14 +392,24 @@
             line-height: 1.5;
         }
 
-        /* 科研/竞赛经历样式 */
+        /* 科研/竞赛经历样式（新增图标+hover） */
         .experience-item {
             margin-bottom: 28px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .experience-item:hover {
+            background-color: var(--bg-light);
         }
 
         .experience-item h3 {
             font-size: 18px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .experience-item .period {
@@ -247,16 +423,17 @@
             font-weight: 500;
             color: var(--text-primary);
             margin: 4px 0 10px 0;
+            padding-left: 24px;
         }
 
         .experience-item ul {
-            padding-left: 22px;
+            padding-left: 46px;
             color: var(--text-secondary);
             font-size: 15px;
             line-height: 1.65;
         }
 
-        /* 奖项列表样式 */
+        /* 奖项列表样式（新增奖章图标+hover） */
         .awards-list {
             padding-left: 0;
             list-style: none;
@@ -269,13 +446,43 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            border-left: 3px solid var(--awards-color);
         }
 
-        /* 技能模块样式 */
+        .awards-list li:hover {
+            background-color: var(--bg-light);
+            transform: translateX(4px);
+        }
+
+        .awards-list li::before {
+            content: '\f091'; /* 奖章图标 */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--awards-color);
+            margin-right: 10px;
+        }
+
+        /* 技能模块样式（新增背景色+图标+hover） */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 18px;
+        }
+
+        .skill-category {
+            background-color: var(--bg-light);
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            transition: transform 0.3s ease;
+            border-top: 3px solid var(--skills-color);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
         }
 
         .skill-category h3 {
@@ -283,6 +490,9 @@
             font-weight: 600;
             margin-bottom: 8px;
             color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .skill-category ul {
@@ -292,13 +502,29 @@
             line-height: 1.8;
         }
 
-        /* 页脚样式 */
+        .skill-category li {
+            transition: transform 0.2s ease;
+            padding: 2px 0;
+        }
+
+        .skill-category li:hover {
+            transform: translateX(6px);
+            color: var(--skills-color);
+            font-weight: 500;
+        }
+
+        /* 页脚样式（新增动画） */
         footer {
             text-align: center;
             padding: 30px 0;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
             font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        footer:hover {
+            color: var(--primary-color);
         }
 
         /* 响应式适配：移动端自动堆叠 */
@@ -314,6 +540,7 @@
 
             nav {
                 gap: 15px;
+                justify-content: center;
             }
 
             .education-item .period,
@@ -322,6 +549,15 @@
                 float: none;
                 display: block;
                 width: 100%;
+                margin-top: 4px;
+            }
+
+            .education-item h3, .experience-item h3 {
+                flex-wrap: wrap;
+            }
+
+            .awards-list li::before {
+                margin-bottom: 4px;
             }
         }
     </style>
@@ -334,6 +570,7 @@
         <nav>
             <a href="#about" class="active">About</a>
             <a href="#education">Education</a>
+            <a href="#news">News</a>
             <a href="#publications">Publications</a>
             <a href="#research">Research</a>
             <a href="#competitions">Competitions</a>
@@ -351,21 +588,20 @@
                 <img src="avatar.jpg" alt="Kun Qian" class="avatar">
             </div>
             
-            <h1 class="name">Kun Qian (钱坤)</h1>
+            <h1 class="name">Kun Qian</h1>
             <p class="affiliation">Huazhong University of Science and Technology</p>
 
             <!-- 联系&学术链接：替换成你自己的真实链接 -->
             <div class="contact-links">
                 <a href="mailto:qiank@hust.edu.cn"><i class="fas fa-envelope"></i> Email</a>
                 <a href="https://github.com/your-github-id" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                <!-- <a href="https://scholar.google.com/citations?user=your-scholar-id" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a> -->
-                <!-- <a href="https://linkedin.com/in/your-linkedin-id" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> -->
-                <!-- <a href="CV_Kun Qian.pdf" target="_blank"><i class="fas fa-file-pdf"></i> CV</a> -->
+                <a href="https://scholar.google.com/citations?user=your-scholar-id" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+                <a href="https://linkedin.com/in/your-linkedin-id" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
             </div>
 
             <!-- 研究兴趣：完全匹配你的研究方向 -->
             <div class="research-interests">
-                <h3>Research Interests</h3>
+                <h3><i class="fas fa-flask"></i> Research Interests</h3>
                 <ul>
                     <li>Distributed Optimization</li>
                     <li>Mobile Commuting</li>
@@ -378,12 +614,12 @@
         <main class="content">
             <!-- About 个人介绍模块 -->
             <section id="about" class="content-section">
-                <h2>About Me</h2>
+                <h2><i class="fas fa-user"></i> About Me</h2>
                 <p>
                     I am a final-year undergraduate student majoring in Automation at the School of Artificial Intelligence and Automation, Huazhong University of Science and Technology (HUST).
                 </p>
                 <p>
-                    My research interest includes distributed optimization algorithm design and system buliding, and VLM-based behaviors analysis for ASD children..
+                    My current research focuses on distributed optimization algorithm design, and VLM-based behaviors analysis for ASD children.
                 </p>
                 <p>
                     ❗️❗️ <strong style="color: #c8102e; font-weight: 700;">I am open to academic discussions and collaborations. If you are interested in my research, please feel free to reach out to me via email!</strong>
@@ -392,17 +628,28 @@
 
             <!-- Education 教育经历模块 -->
             <section id="education" class="content-section">
-                <h2>Education</h2>
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
                 <div class="education-item">
-                    <h3>Huazhong University of Science and Technology<span class="period">09.2022 - Present</span></h3>
-                    <p class="degree">B.Eng. in Automation, School of Artificial Intelligence and Automation</p>
-                    <p class="degree">Wuhan, China</p>
+                    <h3><i class="fas fa-university"></i> Huazhong University of Science and Technology<span class="period">09.2022 - Present</span></h3>
+                    <p class="degree">B.Eng. in Automation</p>
                 </div>
+            </section>
+
+            <section id="news" class="content-section">
+                <h2><i class="fas fa-fire"></i> News</h2>
+                <ul class="news-list">
+                    <li>
+                        <span class="news-date">2025.04</span>: New Paper on Traffic Optimization Accepted by ICTETS 2023.
+                    </li>
+                    <!-- <li>
+                        <span class="news-date">2023.12</span>: New Paper on Fuzzy Control Accepted by IEEE Access.
+                    </li> -->
+                </ul>
             </section>
 
             <!-- Publications 论文发表模块 -->
             <section id="publications" class="content-section">
-                <h2>Publications</h2>
+                <h2><i class="fas fa-file-alt"></i> Publications</h2>
                 <!-- 第一篇论文（一作） -->
                 <div class="publication-item">
                     <h3>Quantized Distributed Dual Algorithm for Resource Allocation with Gradient Tracking over Unbalanced Networks</h3>
@@ -419,31 +666,31 @@
 
             <!-- Research Experience 科研经历模块 -->
             <section id="research" class="content-section">
-                <h2>Research Experience</h2>
+                <h2><i class="fas fa-microscope"></i> Research Experience</h2>
                 <!-- 国创项目 -->
                 <div class="experience-item">
-                    <h3>National College Student Innovation Training Program<span class="period">01.2024 - 04.2025</span></h3>
+                    <h3><i class="fas fa-project-diagram"></i> National College Student Innovation Training Program<span class="period">01.2024 - 04.2025</span></h3>
                     <p class="project-title">Lightweight Design and Implementation of Elastic Distributed Optimization Algorithms</p>
                 </div>
                 <!-- 分布式优化研究项目 -->
                 <div class="experience-item">
-                    <h3>Research on Distributed Optimization under Imperfect Communication<span class="period">11.2024 - 12.2024</span></h3>
+                    <h3><i class="fas fa-network-wired"></i> Research on Distributed Optimization under Imperfect Communication<span class="period">11.2024 - 12.2024</span></h3>
                     <p class="project-title">Communication-Efficient Distributed Resource Allocation via Implicit Dual Gradient Tracking</p>
                 </div>
             </section>
 
             <!-- Competitions 竞赛经历模块 -->
             <section id="competitions" class="content-section">
-                <h2>Competition Experience</h2>
+                <h2><i class="fas fa-trophy"></i> Competition Experience</h2>
                 <div class="experience-item">
-                    <h3>National Intelligent Car Competition for College Students<span class="period">09.2024 - 12.2024</span></h3>
+                    <h3><i class="fas fa-car"></i> National Intelligent Car Competition for College Students<span class="period">09.2024 - 12.2024</span></h3>
                     <p class="project-title">Outdoor Unmanned Vehicle (ROS-based) Group | Team Leader</p>
                 </div>
             </section>
 
             <!-- Awards 获奖模块 -->
             <section id="awards" class="content-section">
-                <h2>Awards & Honors</h2>
+                <h2><i class="fas fa-award"></i> Awards & Honors</h2>
                 <ul class="awards-list">
                     <li><span>National Scholarship</span><span>2024 (Top 2%)</span></li>
                     <li><span>Outstanding Undergraduates in Terms of Academic Performance</span><span>2024 (Top 1%)</span></li>
@@ -454,10 +701,10 @@
 
             <!-- Skills 技能模块 -->
             <section id="skills" class="content-section">
-                <h2>Skills</h2>
+                <h2><i class="fas fa-tools"></i> Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>Programming</h3>
+                        <h3><i class="fas fa-code"></i> Programming</h3>
                         <ul>
                             <li>Python (ROS, NumPy)</li>
                             <li>C (STM32)</li>
@@ -465,7 +712,7 @@
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h3>Hardware</h3>
+                        <h3><i class="fas fa-microchip"></i> Hardware</h3>
                         <ul>
                             <li>Raspberry Pi</li>
                             <li>STM32 Microcontrollers</li>
