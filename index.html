@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 这里替换成你的名字，作为浏览器标签标题 -->
+    <title>Your Name | Personal Homepage</title>
+    <style>
+        /* 全局样式重置 & 基础配置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 全局配色&字体变量（可一键修改主题） */
+        :root {
+            --primary-color: #0d3b66; /* 学术主色调-低调深蓝 */
+            --text-primary: #1a1a1a;
+            --text-secondary: #555555;
+            --bg-light: #f8f9fa;
+            --border-color: #e5e7eb;
+            --hover-color: #1a5fb4;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: #ffffff;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 顶部导航栏样式 */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+            position: sticky;
+            top: 0;
+            background-color: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        /* 主体容器：侧边栏+主内容区 */
+        .container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        /* 侧边栏：个人信息卡片 */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .avatar {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .title {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .affiliation {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* 社交&学术链接 */
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .contact-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.2s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--hover-color);
+        }
+
+        /* 研究兴趣模块 */
+        .research-interests {
+            background-color: var(--bg-light);
+            padding: 18px;
+            border-radius: 8px;
+        }
+
+        .research-interests h3 {
+            font-size: 17px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .research-interests ul {
+            list-style: none;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* 主内容区通用样式 */
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .content-section h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-section p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* 教育经历样式 */
+        .education-item {
+            margin-bottom: 24px;
+        }
+
+        .education-item h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .education-item .period {
+            font-size: 15px;
+            color: var(--text-secondary);
+            float: right;
+        }
+
+        .education-item .degree {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin: 4px 0;
+        }
+
+        /* 论文列表样式 */
+        .publication-item {
+            margin-bottom: 28px;
+            padding: 16px;
+            background-color: var(--bg-light);
+            border-radius: 8px;
+        }
+
+        .publication-item h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .publication-item .authors {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .publication-item .venue {
+            font-size: 15px;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .publication-item .abstract {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* 新闻动态样式（可选） */
+        .news-item {
+            margin-bottom: 16px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .news-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .news-date {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* 响应式适配：移动端自动堆叠 */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            .education-item .period {
+                float: none;
+                display: block;
+            }
+        }
+    </style>
+    <!-- 图标库：用于链接前的小图标，无需本地下载 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 顶部导航栏：可根据你的需求增删选项 -->
+    <header>
+        <nav>
+            <a href="#about" class="active">About</a>
+            <a href="#news">News</a>
+            <a href="#education">Education</a>
+            <a href="#publications">Publications</a>
+            <a href="#awards">Awards</a>
+            <a href="cv.pdf" target="_blank">CV</a>
+        </nav>
+    </header>
+
+    <!-- 主体内容容器 -->
+    <div class="container">
+        <!-- 左侧侧边栏：个人信息卡片 -->
+        <aside class="sidebar">
+            <!-- 头像：替换成你自己的图片链接/本地文件名 -->
+            <img src="avatar.jpg" alt="Your Name" class="avatar">
+            
+            <h1 class="name">Your Name</h1>
+            <p class="title">PhD Candidate</p> <!-- 替换成你的头衔：比如Prospective PhD Student -->
+            <p class="affiliation">Your University</p> <!-- 替换成你的学校 -->
+
+            <!-- 联系&学术链接：按需增删，替换成你自己的链接 -->
+            <div class="contact-links">
+                <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://github.com/your-github-id" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://scholar.google.com/citations?user=your-scholar-id" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+                <a href="https://linkedin.com/in/your-linkedin-id" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="cv.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Download CV</a>
+            </div>
+
+            <!-- 研究兴趣：替换成你的研究方向 -->
+            <div class="research-interests">
+                <h3>Research Interests</h3>
+                <ul>
+                    <li>Distributed Optimization</li>
+                    <li>Machine Learning</li>
+                    <li>Control Theory</li>
+                    <li>Algorithm Design</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- 右侧主内容区 -->
+        <main class="content">
+            <!-- About 个人介绍模块 -->
+            <section id="about" class="content-section">
+                <h2>About</h2>
+                <p>
+                    I am a prospective PhD student at [Your University/Department], advised by Prof. [Your Advisor's Name].
+                </p>
+                <p>
+                    Prior to this, I will obtain my Bachelor's degree in [Your Major] from [Your Undergraduate University] in [Year].
+                </p>
+                <p>
+                    My current research focuses on [your core research direction], with particular interest in [your specific research topics]. My goal is to [your research vision, optional].
+                </p>
+            </section>
+
+            <!-- News 动态模块（可选，不需要可直接删除） -->
+            <section id="news" class="content-section">
+                <h2>News</h2>
+                <div class="news-item">
+                    <span class="news-date">2026.09</span>: I will start my PhD journey at [Your University]!
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2026.06</span>: I will graduate from [Your Undergraduate University] with a Bachelor's degree.
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2025.XX</span>: [Your other news, e.g. paper accepted, award received]
+                </div>
+            </section>
+
+            <!-- Education 教育经历模块 -->
+            <section id="education" class="content-section">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>[Your PhD University]<span class="period">2026.09 - 2030.06 (Expected)</span></h3>
+                    <p class="degree">PhD in [Your Major], Department of [Your Department]</p>
+                    <p class="degree">Advisor: Prof. [Your Advisor's Name]</p>
+                </div>
+                <div class="education-item">
+                    <h3>[Your Undergraduate University]<span class="period">2022.09 - 2026.06</span></h3>
+                    <p class="degree">B.Eng. in [Your Major]</p>
+                    <p class="degree">GPA: X.X/4.0 | Rank: X/X (optional)</p>
+                </div>
+            </section>
+
+            <!-- Publications 论文发表模块 -->
+            <section id="publications" class="content-section">
+                <h2>Publications</h2>
+                <!-- 论文1 -->
+                <div class="publication-item">
+                    <h3>Paper Title 1</h3>
+                    <p class="authors"><strong>Your Name</strong>, Co-author 1, Co-author 2, Advisor Name*</p>
+                    <p class="venue">IEEE Transactions on XXX, 2026 (Under Review)</p>
+                    <p class="abstract">
+                        Brief introduction of your paper: what problem you solved, what method you proposed, what's the key contribution.
+                    </p>
+                </div>
+                <!-- 论文2 -->
+                <div class="publication-item">
+                    <h3>Paper Title 2</h3>
+                    <p class="authors">Co-author 1, <strong>Your Name</strong>, Co-author 2</p>
+                    <p class="venue">arXiv preprint arXiv:XXXX.XXXXX, 2025</p>
+                    <p class="abstract">
+                        Brief introduction of your preprint paper.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Awards 获奖模块（可选） -->
+            <section id="awards" class="content-section">
+                <h2>Awards & Honors</h2>
+                <div class="education-item">
+                    <h3>National Scholarship<span class="period">2025</span></h3>
+                    <p class="degree">Ministry of Education of China</p>
+                </div>
+                <div class="education-item">
+                    <h3>First-Class Academic Scholarship<span class="period">2024</span></h3>
+                    <p class="degree">Your Undergraduate University</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 Your Name. All rights reserved.</p>
+        <p style="margin-top: 8px;">Hosted on GitHub Pages</p>
+    </footer>
+</body>
+</html>
