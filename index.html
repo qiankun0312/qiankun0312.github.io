@@ -72,16 +72,22 @@
 
         /* 侧边栏：个人信息卡片 */
         .sidebar {
-            position: sticky;
-            top: 100px;
+            /* position: sticky;
+            top: 100px; */
             height: fit-content;
         }
 
+        .avatar-container {
+            width: 100%;
+            aspect-ratio: 1/1; /* 强制正方形容器 */
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
         .avatar {
             width: 100%;
+            height: 100%;
             border-radius: 50%;
-            margin-bottom: 22px;
-            object-fit: cover;
+            object-fit: cover; /* 图片居中裁剪，不失真 */
         }
 
         .name {
@@ -347,8 +353,9 @@
     <div class="container">
         <!-- 左侧侧边栏：个人信息卡片 -->
         <aside class="sidebar">
-            <!-- 头像：替换成你自己的头像图片，命名为avatar.jpg即可 -->
-            <img src="avatar.jpg" alt="Kun Qian" class="avatar">
+            <div class="avatar-container">
+                <img src="avatar.jpg" alt="Kun Qian" class="avatar">
+            </div>
             
             <h1 class="name">Kun Qian (钱坤)</h1>
             <p class="title">B.Eng. Candidate in Automation</p>
