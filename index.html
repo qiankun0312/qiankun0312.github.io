@@ -78,15 +78,18 @@
         }
 
         .avatar-container {
-            width: 100%;
-            aspect-ratio: 1/1; /* 强制正方形容器 */
+            width: 200px;       /* 固定容器宽度，大小不变 */
+            aspect-ratio: 1/1;  /* 强制正方形，永远正圆 */
+            margin: 0 auto 22px;/* 居中+底部间距，布局不变 */
+            border-radius: 50%; /* 正圆形容器 */
+            background: #f7f9fc;/* 图片缩小后的留白背景（和页面配色一致） */
             overflow: hidden;
-            margin-bottom: 22px;
         }
         .avatar {
-            width: 100%;
-            height: 100%;
+            width: 85%;
+            height: 85%;
             border-radius: 50%;
+            object-fit: 50%;
             object-fit: cover; /* 图片居中裁剪，不失真 */
         }
 
@@ -393,7 +396,7 @@
                     My research focuses on distributed optimization algorithm design and system buliding, and VLM-based behaviors analysis for ASD children..
                 </p>
                 <p>
-                    ❗️ <strong style="color: #c8102e; font-weight: 700;">I am open to academic discussions and collaborations. If you are interested in my research, please feel free to reach out to me via email!</strong>
+                    ❗️❗️ <strong style="color: #c8102e; font-weight: 700;">I am open to academic discussions and collaborations. If you are interested in my research, please feel free to reach out to me via email!</strong>
                 </p>
             </section>
 
@@ -471,9 +474,6 @@
                     <li><span>National Scholarship</span><span>2024 (Top 2%)</span></li>
                     <li><span>Outstanding Undergraduates in Terms of Academic Performance</span><span>2024 (Top 1%)</span></li>
                     <li><span>National First Prize, National Intelligent Car Competition for College Students</span><span>2024</span></li>
-                    <li><span>Merit Student, Huazhong University of Science and Technology</span><span>2024</span></li>
-                    <li><span>Honorable Mention, Mathematical Contest in Modeling (MCM)</span><span>2023</span></li>
-                    <li><span>First Prize (Provincial Level), National College Mathematics Competition</span><span>2023</span></li>
                     <li><span>First Prize, School Badminton Skills Competition</span><span>2023</span></li>
                 </ul>
             </section>
@@ -483,25 +483,11 @@
                 <h2>Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>Language</h3>
-                        <ul>
-                            <li>English (IELTS 6.0)</li>
-                            <li>Chinese (Native)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
                         <h3>Programming</h3>
                         <ul>
                             <li>Python (ROS, NumPy)</li>
                             <li>C (STM32)</li>
-                            <li>MATLAB (MCM, Simulink)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Tools</h3>
-                        <ul>
-                            <li>LaTeX</li>
-                            <li>Keil</li>
+                            <li>MATLAB </li>
                         </ul>
                     </div>
                     <div class="skill-category">
