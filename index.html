@@ -22,7 +22,6 @@
             --competitions-color: #46a7d7;
             --awards-color: #d4a017;
             --skills-color: #2e7d32;
-            --news-color: #e53e3e; 
             
             --text-primary: #121212;
             --text-secondary: #4a4a4a;
@@ -205,25 +204,23 @@
             color: var(--primary-color);
         }
 
-        /* 主内容区通用样式（新增淡入动画） */
+        /* 主内容区通用样式：默认取消淡入动画，仅论文模块保留 */
         .content-section {
             margin-bottom: 50px;
+            /* 取消默认动画初始值 */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 仅论文模块保留淡入动画 */
+        #publications.content-section {
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.8s ease forwards;
+            animation-delay: 0.4s;
         }
 
-        /* 分区延迟动画，营造逐段加载效果 */
-        #about { animation-delay: 0.1s; }
-        #education { animation-delay: 0.2s; }
-        #news { animation-delay: 0.3s; }
-        #publications { animation-delay: 0.4s; }
-        #research { animation-delay: 0.5s; }
-        #competitions { animation-delay: 0.6s; }
-        #awards { animation-delay: 0.7s; }
-        #skills { animation-delay: 0.8s; }
-        
-
+        /* 移除其他模块的动画延迟配置 */
         @keyframes fadeIn {
             to {
                 opacity: 1;
@@ -260,17 +257,18 @@
             margin-bottom: 16px;
         }
 
-        /* 教育经历样式（日期固定最右侧） */
+        /* 教育经历样式：取消hover动画 */
         .education-item {
             margin-bottom: 24px;
             padding: 12px 16px;
             border-radius: 8px;
-            transition: background-color 0.3s ease;
+            /* 取消hover过渡 */
             position: relative; /* 确保日期定位 */
         }
 
+        /* 取消教育模块hover效果 */
         .education-item:hover {
-            background-color: var(--bg-light);
+            background-color: transparent;
         }
 
         .education-item h3 {
@@ -317,15 +315,14 @@
             gap: 12px;
             padding: 10px 14px;
             border-radius: 8px;
-            transition: all 0.3s ease;
-            /* 移除左侧边框 */
+            /* 取消hover过渡 */
         }
 
-        /* 移除news列表项的图标 */
+        /* 取消新闻列表项hover效果 */
         .news-list li:hover {
-            background-color: var(--bg-light);
-            transform: translateX(6px);
-            box-shadow: 0 2px 8px var(--shadow-color);
+            background-color: transparent;
+            transform: none;
+            box-shadow: none;
         }
 
         /* 日期样式（加粗突出） */
@@ -335,7 +332,7 @@
             margin-right: 8px;
         }
 
-        /* 论文列表样式（增强hover动画） */
+        /* 论文列表样式（保留hover动画） */
         .publication-item {
             margin-bottom: 28px;
             padding: 18px;
@@ -377,16 +374,17 @@
             line-height: 1.5;
         }
 
-        /* 科研/竞赛经历样式（移除图标） */
+        /* 科研/竞赛经历样式：取消hover动画 */
         .experience-item {
             margin-bottom: 28px;
             padding: 12px 16px;
             border-radius: 8px;
-            transition: background-color 0.3s ease;
+            /* 取消hover过渡 */
         }
 
+        /* 取消科研/竞赛模块hover效果 */
         .experience-item:hover {
-            background-color: var(--bg-light);
+            background-color: transparent;
         }
 
         .experience-item h3 {
@@ -419,7 +417,7 @@
             line-height: 1.65;
         }
 
-        /* 奖项列表样式（移除图标，移除左侧边框） */
+        /* 奖项列表样式：取消hover动画 */
         .awards-list {
             padding-left: 0;
             list-style: none;
@@ -434,16 +432,16 @@
             flex-wrap: wrap;
             padding: 8px 12px;
             border-radius: 6px;
-            transition: all 0.2s ease;
-            /* 移除左侧边框 */
+            /* 取消hover过渡 */
         }
 
+        /* 取消奖项模块hover效果 */
         .awards-list li:hover {
-            background-color: var(--bg-light);
-            transform: translateX(4px);
+            background-color: transparent;
+            transform: none;
         }
 
-        /* 技能模块样式（新增背景色+图标+hover） */
+        /* 技能模块样式：取消hover动画 */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -455,12 +453,13 @@
             padding: 16px;
             border-radius: 8px;
             box-shadow: 0 2px 8px var(--shadow-color);
-            transition: transform 0.3s ease;
+            /* 取消hover过渡 */
             border-top: 3px solid var(--skills-color);
         }
 
+        /* 取消技能模块hover效果 */
         .skill-category:hover {
-            transform: translateY(-4px);
+            transform: none;
         }
 
         .skill-category h3 {
@@ -481,28 +480,30 @@
         }
 
         .skill-category li {
-            transition: transform 0.2s ease;
+            /* 取消hover过渡 */
             padding: 2px 0;
         }
 
+        /* 取消技能列表项hover效果 */
         .skill-category li:hover {
-            transform: translateX(6px);
-            color: var(--skills-color);
-            font-weight: 500;
+            transform: none;
+            color: inherit;
+            font-weight: normal;
         }
 
-        /* 页脚样式（新增动画） */
+        /* 页脚样式：取消hover动画 */
         footer {
             text-align: center;
             padding: 30px 0;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
             font-size: 14px;
-            transition: color 0.3s ease;
+            /* 取消hover过渡 */
         }
 
+        /* 取消页脚hover效果 */
         footer:hover {
-            color: var(--primary-color);
+            color: inherit;
         }
 
         /* 响应式适配：移动端自动堆叠 */
@@ -599,7 +600,7 @@
                     My current research focuses on distributed optimization algorithm design, and VLM-based behaviors analysis for ASD children.
                 </p>
                 <p>
-                    ❗️❗️ <strong style="color: #c8102e; font-weight: 700;">I am open to academic discussions and collaborations. If you are interested in my research, please feel free to reach out to me via email!</strong>
+                    <strong style="color: #c8102e; font-weight: 700;">I am open to academic discussions and collaborations. If you are interested in my research, please feel free to reach out to me via email!</strong>
                 </p>
             </section>
 
