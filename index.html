@@ -78,17 +78,21 @@
         }
 
         .avatar-container {
-            width: 200px;       /* 固定容器宽度，大小不变 */
-            aspect-ratio: 1/1;  /* 强制正方形，永远正圆 */
-            margin: 0 auto 22px;/* 居中+底部间距，布局不变 */
-            border-radius: 50%; /* 正圆形容器 */
-            background: #f7f9fc;/* 图片缩小后的留白背景（和页面配色一致） */
-            overflow: hidden;
+            width: 200px;        /* 固定展示大小，不变 */
+            height: 200px;       /* 替代aspect-ratio，避免部分浏览器兼容问题 */
+            margin: 0 auto 22px; /* 居中+底部间距，布局不变 */
+            border-radius: 50%;  /* 仅容器加圆角，避免双层圆 */
+            background: #ffffff; /* 纯白背景，和页面融合，消除圆环感 */
+            overflow: hidden;    /* 裁剪超出容器的部分（仅防极端情况） */
+            display: flex;       /* 核心：让图片绝对居中 */
+            align-items: center;
+            justify-content: center;
         }
+
         .avatar {
             width: 85%;
             height: 85%;
-            border-radius: 50%;
+            border-radius: 0;
             object-fit: 50%;
             object-fit: cover; /* 图片居中裁剪，不失真 */
         }
@@ -393,7 +397,7 @@
                     I am a final-year undergraduate student majoring in Automation at the School of Artificial Intelligence and Automation, Huazhong University of Science and Technology (HUST).
                 </p>
                 <p>
-                    My research focuses on distributed optimization algorithm design and system buliding, and VLM-based behaviors analysis for ASD children..
+                    My research interest includes distributed optimization algorithm design and system buliding, and VLM-based behaviors analysis for ASD children..
                 </p>
                 <p>
                     ❗️❗️ <strong style="color: #c8102e; font-weight: 700;">I am open to academic discussions and collaborations. If you are interested in my research, please feel free to reach out to me via email!</strong>
@@ -434,21 +438,11 @@
                 <div class="experience-item">
                     <h3>National College Student Innovation Training Program<span class="period">01.2024 - 04.2025</span></h3>
                     <p class="project-title">Lightweight Design and Implementation of Elastic Distributed Optimization Algorithms</p>
-                    <ul>
-                        <li>Designed a fully distributed multi-agent physical platform based on Raspberry Pi 4B to verify real-time optimization algorithm, supporting 3+ agents with synchronous communication for real-time distributed optimization tasks.</li>
-                        <li>Built a distributed algorithm simulation platform, incorporating modules like network topology, algorithm and quantizer, supporting convenient comparison of algorithms under different experimental scenarios.</li>
-                        <li>Proposed a quantized dual gradient tracking method to address limited bandwidth and unbalanced communication topologies, achieving linear convergence with an accuracy of 10<sup>-10</sup> even at a quantization level of 3.</li>
-                        <li>Resulted in a first-author paper accepted by CCC 2025.</li>
-                    </ul>
                 </div>
                 <!-- 分布式优化研究项目 -->
                 <div class="experience-item">
                     <h3>Research on Distributed Optimization under Imperfect Communication<span class="period">11.2024 - 12.2024</span></h3>
                     <p class="project-title">Communication-Efficient Distributed Resource Allocation via Implicit Dual Gradient Tracking</p>
-                    <ul>
-                        <li>Conducted comparative experiments of distributed optimization algorithms via MATLAB simulations and Raspberry Pi physical platforms.</li>
-                        <li>Authored the experimental section of the paper, detailing methodology, implementation, and results analysis.</li>
-                    </ul>
                 </div>
             </section>
 
@@ -458,12 +452,6 @@
                 <div class="experience-item">
                     <h3>National Intelligent Car Competition for College Students<span class="period">09.2024 - 12.2024</span></h3>
                     <p class="project-title">Outdoor Unmanned Vehicle (ROS-based) Group | Team Leader</p>
-                    <ul>
-                        <li>Led a 5-member team to design motion control and path planning algorithms for outdoor unmanned vehicles.</li>
-                        <li>Developed motion control code using PID control in Python.</li>
-                        <li>Proposed a simplified path planning method combining coordinate transformation and PID control, reducing task completion time by around 20 seconds compared to the default ROS global-local planning approach.</li>
-                        <li>Won the First Prize in the National Finals (among 493 teams nationwide).</li>
-                    </ul>
                 </div>
             </section>
 
