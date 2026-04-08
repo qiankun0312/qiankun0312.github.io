@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kun Qian | Personal Homepage</title>
     <style>
-        /* 全局样式重置 & 基础配置 */
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* 扩展全局配色（分区主题色） */
         :root {
             --primary-color: #0f3c70;
             --about-color: #0f3c70;
@@ -40,11 +39,10 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            /* 全局平滑过渡 */
+            
             scroll-behavior: smooth;
         }
 
-        /* 顶部导航栏（增强动画） */
         header {
             padding: 22px 0;
             border-bottom: 1px solid var(--border-color);
@@ -72,7 +70,6 @@
             padding: 4px 0;
         }
 
-        /* 导航栏下划线动画 */
         nav a::after {
             content: '';
             position: absolute;
@@ -93,7 +90,6 @@
             transform: translateY(-2px);
         }
 
-        /* 主体容器：侧边栏+主内容区 */
         .container {
             display: grid;
             grid-template-columns: 240px 1fr;
@@ -101,21 +97,15 @@
             margin-bottom: 60px;
         }
 
-        /* 侧边栏：移除整体动画，保留内部元素动画 */
         .sidebar {
             height: fit-content;
         }
 
-        .avatar-container {
-            text-align: center; /* 核心：让容器内的行内/行内块元素水平居中 */
-        }
         .avatar {
             width: 60%;
             border-radius: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 22px;
             object-fit: cover;
-            object-position: center;
-            /* 头像阴影+hover动画 */
             box-shadow: 0 4px 12px var(--shadow-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -129,7 +119,6 @@
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 8px;
-            text-align: center;
             color: var(--text-primary);
         }
 
@@ -145,7 +134,6 @@
             margin-bottom: 22px;
         }
 
-        /* 联系&学术链接（增强图标对齐+hover动画） */
         .contact-links {
             display: flex;
             flex-direction: column;
@@ -171,7 +159,6 @@
             transform: translateX(4px);
         }
 
-        /* 研究兴趣模块（新增背景动画） */
         .research-interests {
             background-color: var(--bg-light);
             padding: 18px;
@@ -210,14 +197,12 @@
             color: var(--primary-color);
         }
 
-        /* 主内容区通用样式：取消所有模块淡入动画 */
         .content-section {
             margin-bottom: 50px;
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* 移除publications模块的淡入动画（核心修改1） */
         @keyframes fadeIn {
             to {
                 opacity: 1;
@@ -225,19 +210,17 @@
             }
         }
 
-        /* 分区标题样式（图标不同颜色，字体黑色，下划线统一黑色） */
         .content-section h2 {
             font-size: 26px;
             margin-bottom: 20px;
-            color: #000; /* 字体统一黑色 */
+            color: #000; 
             padding-bottom: 8px;
-            border-bottom: 2px solid #000; /* 下划线统一黑色 */
+            border-bottom: 2px solid #000; 
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        /* 仅保留图标颜色差异化，下划线统一黑色（删除原border-color配置） */
         #about h2 i { color: var(--about-color); }
         #education h2 i { color: var(--education-color); }
         #news h2 i { color: var(--news-color); }
@@ -254,16 +237,13 @@
             margin-bottom: 16px;
         }
 
-        /* 教育经历样式：取消hover动画 */
         .education-item {
             margin-bottom: 24px;
             padding: 12px 16px;
             border-radius: 8px;
-            /* 取消hover过渡 */
-            position: relative; /* 确保日期定位 */
+            position: relative; 
         }
 
-        /* 取消教育模块hover效果 */
         .education-item:hover {
             background-color: transparent;
         }
@@ -272,22 +252,22 @@
             font-size: 18px;
             font-weight: 600;
             display: flex;
-            justify-content: space-between; /* 学校左对齐，日期右对齐 */
-            align-items: center; /* 垂直居中 */
-            width: 100%; /* 占满宽度 */
+            justify-content: space-between; 
+            align-items: center;
+            width: 100%; 
         }
 
         .education-item .period {
             font-size: 15px;
             color: var(--text-secondary);
-            white-space: nowrap; /* 防止日期换行 */
+            white-space: nowrap;
         }
 
         .education-item .degree {
             font-size: 16px;
             color: var(--text-secondary);
             margin: 4px 0;
-            padding-left: 0; /* 取消左内边距，和学校对齐 */
+            padding-left: 0; 
         }
 
         .course-list {
@@ -295,7 +275,7 @@
             color: var(--text-secondary);
             margin-top: 8px;
             line-height: 1.6;
-            padding-left: 0; /* 取消左内边距，统一对齐 */
+            padding-left: 0; 
         }
 
         .news-list {
@@ -312,24 +292,20 @@
             gap: 12px;
             padding: 10px 14px;
             border-radius: 8px;
-            /* 取消hover过渡 */
         }
 
-        /* 取消新闻列表项hover效果 */
         .news-list li:hover {
             background-color: transparent;
             transform: none;
             box-shadow: none;
         }
 
-        /* 日期样式（加粗突出） */
         .news-date {
             font-weight: 600;
             color: var(--text-primary);
             margin-right: 8px;
         }
 
-        /* 论文列表样式（保留hover动画） */
         .publication-item {
             margin-bottom: 28px;
             padding: 18px;
@@ -371,15 +347,12 @@
             line-height: 1.5;
         }
 
-        /* 科研/竞赛经历样式：取消hover动画 + 减小条目间距（核心修改2） */
         .experience-item {
-            margin-bottom: 12px; /* 从28px改为12px，减少间距 */
-            padding: 12px 16px;
+            margin-bottom: 6px; 
+            padding: 8px 16px;
             border-radius: 8px;
-            /* 取消hover过渡 */
         }
 
-        /* 取消科研/竞赛模块hover效果 */
         .experience-item:hover {
             background-color: transparent;
         }
@@ -388,9 +361,9 @@
             font-size: 18px;
             font-weight: 600;
             display: flex;
-            justify-content: space-between; /* 标题左对齐，日期右对齐 */
-            align-items: center; /* 垂直居中 */
-            width: 100%; /* 占满宽度 */
+            justify-content: space-between; 
+            align-items: center;
+            width: 100%; 
         }
 
         .experience-item .period {
@@ -404,24 +377,23 @@
             font-weight: 500;
             color: var(--text-primary);
             margin: 4px 0 10px 0;
-            padding-left: 0; /* 取消左内边距，左对齐 */
+            padding-left: 0; 
         }
 
         .experience-item ul {
-            padding-left: 20px; /* 轻微缩进，保持层级 */
+            padding-left: 20px;
             color: var(--text-secondary);
             font-size: 15px;
             line-height: 1.65;
         }
 
-        /* 奖项列表样式：取消hover动画 + 减小条目间距（核心修改3） */
         .awards-list {
             padding-left: 0;
             list-style: none;
         }
 
         .awards-list li {
-            margin-bottom: 4px; /* 从12px改为8px，减少间距 */
+            margin-bottom: 4px;
             font-size: 16px;
             color: var(--text-secondary);
             display: flex;
@@ -429,16 +401,13 @@
             flex-wrap: wrap;
             padding: 8px 12px;
             border-radius: 6px;
-            /* 取消hover过渡 */
         }
 
-        /* 取消奖项模块hover效果 */
         .awards-list li:hover {
             background-color: transparent;
             transform: none;
         }
 
-        /* 技能模块样式：取消hover动画 */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -450,11 +419,9 @@
             padding: 16px;
             border-radius: 8px;
             box-shadow: 0 2px 8px var(--shadow-color);
-            /* 取消hover过渡 */
             border-top: 3px solid var(--skills-color);
         }
 
-        /* 取消技能模块hover效果 */
         .skill-category:hover {
             transform: none;
         }
@@ -477,33 +444,28 @@
         }
 
         .skill-category li {
-            /* 取消hover过渡 */
             padding: 2px 0;
         }
 
-        /* 取消技能列表项hover效果 */
         .skill-category li:hover {
             transform: none;
             color: inherit;
             font-weight: normal;
         }
 
-        /* 页脚样式：取消hover动画 */
         footer {
             text-align: center;
             padding: 30px 0;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
             font-size: 14px;
-            /* 取消hover过渡 */
+
         }
 
-        /* 取消页脚hover效果 */
         footer:hover {
             color: inherit;
         }
 
-        /* 响应式适配：移动端自动堆叠 */
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -533,14 +495,13 @@
             }
         }
     </style>
-    <!-- 图标库：无需本地下载，直接使用 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 
 
 <body>
-    <!-- 顶部导航栏：和模块一一对应 -->
+    
     <header>
         <nav>
             <a href="#about" class="active">About</a>
@@ -551,13 +512,11 @@
             <a href="#competitions">Competitions</a>
             <a href="#awards">Awards</a>
             <a href="#skills">Skills</a>
-            <a href="CV_Kun Qian.pdf" target="_blank">CV</a>
+            <a href="CV_Kun_QIAN.pdf" target="_blank">CV</a>
         </nav>
     </header>
 
-    <!-- 主体内容容器 -->
     <div class="container">
-        <!-- 左侧侧边栏：个人信息卡片 -->
         <aside class="sidebar">
             <div class="avatar-container">
                 <img src="avatar.jpg" alt="Kun Qian" class="avatar">
@@ -566,7 +525,6 @@
             <h1 class="name">Kun Qian</h1>
             <p class="affiliation">Huazhong University of Science and Technology</p>
 
-            <!-- 联系&学术链接：替换成你自己的真实链接 -->
             <div class="contact-links">
                 <a href="mailto:qiank@hust.edu.cn"><i class="fas fa-envelope"></i> Email</a>
                 <a href="https://github.com/your-github-id" target="_blank"><i class="fab fa-github"></i> GitHub</a>
@@ -574,7 +532,6 @@
                 <a href="https://linkedin.com/in/your-linkedin-id" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
             </div>
 
-            <!-- 研究兴趣：完全匹配你的研究方向 -->
             <div class="research-interests">
                 <h3><i class="fas fa-flask"></i> Research Interests</h3>
                 <ul>
@@ -585,9 +542,7 @@
             </div>
         </aside>
 
-        <!-- 右侧主内容区：100%匹配你的CV信息 -->
         <main class="content">
-            <!-- About 个人介绍模块 -->
             <section id="about" class="content-section">
                 <h2><i class="fas fa-user"></i> About Me</h2>
                 <p>
@@ -601,7 +556,6 @@
                 </p>
             </section>
 
-            <!-- Education 教育经历模块 -->
             <section id="education" class="content-section">
                 <h2><i class="fas fa-graduation-cap"></i> Education</h2>
                 <div class="education-item">
@@ -619,39 +573,32 @@
                 </ul>
             </section>
 
-            <!-- Publications 论文发表模块 -->
             <section id="publications" class="content-section">
                 <h2><i class="fas fa-file-alt"></i> Publications</h2>
-                <!-- 第一篇论文（一作） -->
                 <div class="publication-item">
                     <h3>Quantized Distributed Dual Algorithm for Resource Allocation with Gradient Tracking over Unbalanced Networks</h3>
                     <p class="authors"><strong>K. Qian</strong>, Y.-L. Li, X.-K. Liu</p>
-                    <p class="venue">Chinese Control Conference (CCC), 2025. (Accepted | EI Compendex)</p>
+                    <p class="venue">Chinese Control Conference (CCC), 2025. (Published | EI Compendex)</p>
                 </div>
-                <!-- 第二篇论文（二作） -->
                 <div class="publication-item">
                     <h3>Communication-Efficient Distributed Resource Allocation via Implicit Dual Gradient Tracking</h3>
                     <p class="authors">Y.-L. Li, <strong>K. Qian</strong>, X.-K. Liu, Y.-W. Wang, P. Siano</p>
-                    <p class="venue">IFAC World Congress, 2026. (Accepted | EI Compendex)</p>
+                    <p class="venue">IFAC World Congress, 2026. (Under Review | EI Compendex)</p>
                 </div>
             </section>
 
-            <!-- Research Experience 科研经历模块（移除图标） -->
             <section id="research" class="content-section">
                 <h2><i class="fas fa-microscope"></i> Research Experience</h2>
-                <!-- 国创项目 -->
                 <div class="experience-item">
                     <h3>National College Student Innovation Training Program <span class="period">01.2024 - 04.2025</span></h3>
                     <p class="project-title">Lightweight Design and Implementation of Elastic Distributed Optimization Algorithms</p>
                 </div>
-                <!-- 分布式优化研究项目 -->
                 <div class="experience-item">
                     <h3>Research on Distributed Optimization under Imperfect Communication <span class="period">11.2024 - 12.2024</span></h3>
                     <p class="project-title">Communication-Efficient Distributed Resource Allocation via Implicit Dual Gradient Tracking</p>
                 </div>
             </section>
 
-            <!-- Competitions 竞赛经历模块（移除图标） -->
             <section id="competitions" class="content-section">
                 <h2><i class="fas fa-trophy"></i> Competition Experience</h2>
                 <div class="experience-item">
@@ -660,7 +607,6 @@
                 </div>
             </section>
 
-            <!-- Awards 获奖模块（移除图标） -->
             <section id="awards" class="content-section">
                 <h2><i class="fas fa-award"></i> Awards & Honors</h2>
                 <ul class="awards-list">
@@ -671,7 +617,6 @@
                 </ul>
             </section>
 
-            <!-- Skills 技能模块 -->
             <section id="skills" class="content-section">
                 <h2><i class="fas fa-tools"></i> Skills</h2>
                 <div class="skills-grid">
@@ -695,48 +640,37 @@
         </main>
     </div>
 
-    <!-- 页脚 -->
     <footer>
         <p>© 2026 Kun Qian. All rights reserved.</p>
         <p style="margin-top: 8px;">Hosted on GitHub Pages</p>
     </footer>
 
     <script>
-        // 1. 获取所有导航项和内容区域
         const navLinks = document.querySelectorAll('nav a');
         const sections = document.querySelectorAll('.content-section');
 
-        // 2. 点击导航项切换active类 + 平滑滚动
         navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            // 移除所有导航项的active类
             navLinks.forEach(item => item.classList.remove('active'));
-            // 给当前点击的导航项添加active类
             link.classList.add('active');
         });
         });
 
-        // 3. 滚动页面时自动匹配对应导航项的active类（可选，提升体验）
         window.addEventListener('scroll', () => {
         let current = '';
-        // 遍历所有内容区域，判断当前视口在哪个区域
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            // 滚动距离超过区域顶部-100（适配导航栏固定的偏移）
             if (scrollY >= (sectionTop - 100)) {
             current = section.getAttribute('id');
             }
         });
 
-        // 根据当前区域更新导航项的active类
         navLinks.forEach(link => {
             link.classList.remove('active');
-            // 匹配导航项的href（#about、#education等）和当前区域id
             if (link.getAttribute('href') === `#${current}`) {
             link.classList.add('active');
             }
-            // 单独处理CV项（无对应section，点击后保持active）
             if (link.getAttribute('href') === 'CV_Kun Qian.pdf' && link.classList.contains('active')) {
             return;
             }
