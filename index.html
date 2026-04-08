@@ -282,30 +282,33 @@
 
         .news-list {
             padding-left: 0;
-            list-style: none;
+            list-style: none; 
+            line-height: 1.4; 
         }
 
         .news-list li {
-            margin-bottom: 16px;
+            margin-bottom: 2px; 
             font-size: 16px;
             color: var(--text-secondary);
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 10px 14px;
-            border-radius: 8px;
+            align-items: center;
+            padding: 0 0 0 20px; 
+            position: relative; 
         }
 
-        .news-list li:hover {
-            background-color: transparent;
-            transform: none;
-            box-shadow: none;
+        .news-list li::before {
+            content: "●"; 
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%); 
+            color: var(--text-secondary); 
+            font-size: 14px; 
         }
 
         .news-date {
             font-weight: 600;
-            color: var(--text-primary);
-            margin-right: 8px;
+            margin-right: 8px; 
         }
 
         .publication-item {
