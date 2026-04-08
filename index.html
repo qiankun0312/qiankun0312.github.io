@@ -388,9 +388,9 @@
         }
 
         .awards-list {
-            padding-left: 20px; 
-            list-style: disc; 
-            line-height: 1.4;
+            padding-left: 0; 
+            list-style: none; 
+            line-height: 1.4; 
         }
 
         .awards-list li {
@@ -399,11 +399,21 @@
             color: var(--text-secondary);
             display: flex;
             justify-content: space-between; 
+            align-items: center; 
             flex-wrap: wrap;
-            padding: 0; 
-            border-radius: 0; 
+            padding: 0 0 0 20px; 
+            position: relative; 
             transition: none;
-            list-style-position: inside; 
+        }
+
+        .awards-list li::before {
+            content: "●"; 
+            position: absolute;
+            left: 0; 
+            top: 50%;
+            transform: translateY(-50%); 
+            color: var(--text-secondary); 
+            font-size: 14px;
         }
 
         .awards-list li:hover {
