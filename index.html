@@ -280,18 +280,18 @@
             padding-left: 0; 
         }
 
-        .news-list {
+                .news-list {
             padding-left: 0;
             list-style: none; 
-            line-height: 1.4; 
+            line-height: 1.6; /* 稍微增加行高，更美观 */
         }
 
         .news-list li {
-            margin-bottom: 2px; 
+            margin-bottom: 8px; /* 增加条目间的间距 */
             font-size: 16px;
             color: var(--text-secondary);
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* 确保多行文本时对齐顶部 */
             padding: 0 0 0 20px; 
             position: relative; 
         }
@@ -300,18 +300,24 @@
             content: "●"; 
             position: absolute;
             left: 0;
-            top: 50%;
-            transform: translateY(-50%); 
+            top: 0; /* 改为顶部对齐 */
             color: var(--text-secondary); 
             font-size: 14px; 
         }
 
         .news-date {
             font-weight: 600;
-            width: 80px; 
-            text-align: right; 
+            color: var(--text-primary);
+            /* 核心修改：固定宽度并左对齐，确保冒号位置统一 */
+            width: 75px; 
+            text-align: left; 
             flex-shrink: 0; 
-            margin-right: 8px; 
+            display: inline-block;
+        }
+
+        /* 冒号后的文本样式 */
+        .news-content {
+            flex: 1;
         }
 
         .publication-item {
